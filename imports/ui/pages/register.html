@@ -1,0 +1,31 @@
+<template name="register">
+    <div class="container">
+        <div class="row">
+            <div class="offset-md-3 col-md-6">
+                <form method="POST" >
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" name="username" id="username" class="form-control" placeholder="Enter Username" minlength=3 maxlength=10 required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" id="email" class="form-control" placeholder="Enter Email Address" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="mobile">Mobile No.</label>
+                        <input type="text" name="mobile" id="mobile" class="form-control" placeholder="Enter Mobile Number" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" name="password" id="password" class="form-control" placeholder="Enter Password" minlength=6 maxlength=20 required>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmpassword">Confirm Password</label>
+                        <input type="password" name="confirmpassword" id="confirmpassword" class="form-control" placeholder="Enter Password Again" minlength=6 maxlength=20 required>
+                    </div>
+                    <button type="submit" class="btn btn-outline-danger">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</template>

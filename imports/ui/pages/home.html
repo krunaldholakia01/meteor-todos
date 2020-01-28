@@ -1,0 +1,84 @@
+<template name="home">
+    {{#if currentUser}}
+        <div class="container-fluid row d-flex justify-content-between">
+            <div class="col-md-3 jumbotron ml-5 p-5">
+                <div class="text-center">
+                    <h3>Tasks Category</h3>
+                </div>
+                <form class="addCategory" method="POST">
+                    <input type="text" name="category" id="category" class="form-control mb-5 text-center" placeholder="Category Name" required>
+                </form>
+                <div class="list-group">
+                    {{#each value in  tasks}}
+                        <a href="#" id='{{value._id}}' class="list-group-item list-group-item-action categoryname">
+                            {{value.category}}
+                            <span class="badge badge-success badge-pill categoryname float-right" id='{{value._id}}'>
+                                {{value.tasks.length}}
+                            </span>
+                        </a>
+                    {{/each}}
+                </div>
+            </div>
+            <div class="col-md-4 mx-5">
+                <ul class="list-group list-group-flush">
+                    <div class="container text-center">
+                        <h4>Remove Task Category&nbsp;&nbsp;<a href="#" class="fa fa-trash text-danger removeCategory btn btn-default"></a></h4>
+                    </div>
+                    {{#if Session 'categoryId'}}
+                        {{#each value in listTasks}}
+                            <li class="list-group-item list-group-item-action" data-toggle="modal" data-target="#{{value.listid}}{{value.name}}">
+                                {{value.name}}
+                                <a href='#' class="fa fa-2x fa-minus-circle float-right removeTask btn btn-default text-danger" id='{{value.name}}'></a>
+                            </li>
+                            <div class="modal fade" id="{{value.listid}}{{value.name}}" tabindex="-1" role="dialog" aria-labelledby="taskDetailLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="taskDetailLabel">Category : {{category}}</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <b><h6>Task Name : </h6></b>
+                                        <span>{{value.name}}</span>
+                                        <br><br>
+                                        <b><h6>Task Description : </h6></b>
+                                        <span>{{value.description}}</span>
+                                        <br><br>
+                                        <b><h6>Task Created Date : </h6></b>
+                                        <span>{{value.createdAt}}</span>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {{/each}}
+                    {{else}}
+                        <div class="container text-center">
+                            <li class="list-group-item list-group-item-action">Please Click on Category to View Tasks</li>
+                        </div>
+                    {{/if}}
+                </ul>
+            </div>
+            <div class="col-md-3 mrx-5 jumbotron">
+                <form class="addTask" method="POST">
+                    <div class="form-group">
+                        <label for="taskname">Task Name</label>
+                        <input type="text" name="taskname" id="taskname" class="form-control" placeholder="Enter Task Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea type="textarea" name="description" id="description" class="form-control" placeholder="Enter Task Description" value="" rows='3'></textarea>
+                    </div>
+                    <div class="form-group text-center">
+                        <button type="submit" class="btn btn-outline-success">Submit</button>
+                    </div>
+                    
+                </form>
+            </div>
+        </div>
+    {{/if}}
+</template>

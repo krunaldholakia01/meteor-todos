@@ -1,0 +1,11 @@
+<body>
+    <div class="container text-center jumbotron">
+        <h1 class="mb-3">Welcome to Meteor!</h1>
+        {{#if currentUser}}
+            <a href="#" class="btn btn-outline-danger logout">Logout</a>
+        {{else}}
+            <a href="/login" class="btn btn-outline-success">Login</a>
+            <a href="/register" class="btn btn-outline-success">Signup</a>
+        {{/if}}
+    </div>
+</body>
